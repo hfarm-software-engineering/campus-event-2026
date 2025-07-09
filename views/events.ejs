@@ -12,7 +12,11 @@
       <% if (events.length === 0) { %>
         <p>No events are currently available.</p>
       <% } %>
+      <ul>
+        <% for (const event of events) { %>
+          <li><%= event.title %> — <%= event.starts_at %></li>
+        <% } %>
+      </ul>
     </main>
   </body>
 </html>
-
