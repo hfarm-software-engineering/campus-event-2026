@@ -14,7 +14,10 @@
       <% } %>
       <ul>
         <% for (const event of events) { %>
-          <li><%= event.title %> — <%= event.starts_at %></li>
+          <li>
+            <a href="/events/<%= event.id %>"><%= event.title %></a>
+            — <%= event.starts_at %>
+          </li>
         <% } %>
       </ul>
     </main>
