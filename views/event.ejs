@@ -15,6 +15,18 @@
       <% if (message) { %>
         <p class="message"><%= message %></p>
       <% } %>
+      <h2>Reserve a place</h2>
+      <form method="post" action="/events/<%= event.id %>/reservations">
+        <label>
+          Student ID
+          <input name="studentId" required>
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" required>
+        </label>
+        <button type="submit">Reserve</button>
+      </form>
     </main>
   </body>
 </html>
