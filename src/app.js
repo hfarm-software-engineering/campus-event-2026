@@ -67,5 +67,22 @@ export function createApp({ databasePath = "instance/campus-event.sqlite" } = {}
     response.redirect(`/events/${request.params.eventId}?message=Your+place+is+reserved.`);
   });
 
+  app.post("/reservations/:reservationId/cancel", (request, response) => {
+    const reservation = database
+      .prepare("SELECT event_id FROM reservations WHERE id = ?")
+      .get(request.params.reservationId);
+
+    if (reservation === undefined) {
+      response.sendStatus(404);
+      return;
+    }
+
+    database
+      .prepare("DELETE FROM reservations WHERE id = ?")
+      .run(request.params.reservationId);
+
+    response.redirect(`/events/${reservation.event_id}`);
+  });
+
   return app;
 }
