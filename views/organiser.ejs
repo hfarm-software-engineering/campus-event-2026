@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= event.title %> reservations — Campus Event</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <main>
+      <p><a href="/events/<%= event.id %>">Event details</a></p>
+      <h1><%= event.title %> reservations</h1>
+      <p><%= reservations.length %> of <%= event.capacity %> places reserved.</p>
+      <ul>
+        <% for (const reservation of reservations) { %>
+          <li>
+            <%= reservation.student_id %> — <%= reservation.student_email %>
+            <form method="post" action="/reservations/<%= reservation.id %>/cancel">
+              <button type="submit">Cancel reservation</button>
+            </form>
+          </li>
+        <% } %>
+      </ul>
+    </main>
+  </body>
+</html>

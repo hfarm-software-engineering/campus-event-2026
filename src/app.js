@@ -84,5 +84,26 @@ export function createApp({ databasePath = "instance/campus-event.sqlite" } = {}
     response.redirect(`/events/${reservation.event_id}`);
   });
 
+  app.get("/organiser/events/:eventId/reservations", (request, response) => {
+    const event = database
+      .prepare("SELECT id, title, capacity FROM events WHERE id = ?")
+      .get(request.params.eventId);
+
+    if (event === undefined) {
+      response.sendStatus(404);
+      return;
+    }
+
+    const reservations = database
+      .prepare(`
+        SELECT id, student_id, student_email, created_at
+        FROM reservations
+        WHERE event_id = ?
+      `)
+      .all(request.params.eventId);
+
+    response.render("organiser", { event, reservations });
+  });
+
   return app;
 }
