@@ -94,6 +94,11 @@ npm start
 Then open <http://127.0.0.1:3000>. The app creates its database in `instance/` on
 first run, with two sample events.
 
+## Copyright
+
+© 2026 H-FARM College S.r.l. All rights reserved. Shared with students of the
+Software Engineering course.
+
 ## Teaching-use notice
 
 The Git author dates express a fictional project chronology. They are not a
